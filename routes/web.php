@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/daily','TaskController@daily');
+    Route::get('/weekly','TaskController@weekly');
+    Route::get('/monthly','TaskController@monthly');
+    Route::get('/', 'HomeController@index')->name('home');
 });
+Auth::routes();
+
+
