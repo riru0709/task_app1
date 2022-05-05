@@ -9,6 +9,20 @@ class TaskController extends Controller
 {
     public function daily(Task $task)
     {
-        return view('tasks/daily')->with(['tasks' => $task->get()]);
+        /*$task = Task::with(['tasks' => function($query){
+            $query->where('period', 'daily');
+            $query->isToday();
+        }]);*/
+        return view('/daily')->with(['tasks' => $task->where('period', 'daily')->get()]);
+    }
+    
+    public function weekly(Task $task)
+    {
+        return view('/weekly')->with(['tasks' => $task->where('period', 'weekly')->get()]);
+    }
+    
+    public function monthly(Task $task)
+    {
+        return view('/monthly')->with(['tasks' => $task->where('period', 'monthly')->get()]);
     }
 }

@@ -39,6 +39,21 @@ class User extends Authenticatable
     
     public function tasks()   
     {
-        return $this->hasMany('App\Daily');  
+        return $this->hasMany('App\Task');  
+    }
+    
+    public function subTasks()   
+    {
+        return $this->hasMany('App\SubTask');  
+    }
+    
+    public function tags()   
+    {
+        return $this->hasMany('App\Tag');  
+    }
+    
+    public function rewards()   
+    {
+        return $this->hasMany('App\Reward');  
     }
 }
